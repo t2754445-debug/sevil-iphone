@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<title>Севиль, новый айфон</title>
+<meta property="og:title" content="Севиль, новый айфон без нервов">
+<meta property="og:description" content="Пара вопросов, и дальше по шагам: перенос на новый айфон и Телеграм на макбуке.">
+<meta property="og:image" content="https://t2754445-debug.github.io/sevil-iphone/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root { --ink: #000; --grey: #767676; --line: #ececec; --paper: #fff; --lemon: #F4D23C; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.5 "Inter Tight", -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; }
+  main { max-width: 480px; margin: 0 auto; padding-bottom: 56px; }
+  .pad { padding: 0 24px; }
+
+  .bar { display: flex; align-items: center; justify-content: center; height: 54px; position: relative; font: 500 15px "Inter Tight"; }
+  .back { position: absolute; left: 16px; top: 8px; height: 38px; width: 38px; border-radius: 50%; border: 0; background: none; display: none; place-items: center; cursor: pointer; color: var(--ink); }
+  .back.show { display: grid; }
+  .back svg { width: 20px; height: 20px; }
+
+  .hero { margin: 0 0 30px; aspect-ratio: 4 / 5; overflow: hidden; background: #f4f2ee; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.06); animation: settle 1.6s cubic-bezier(.2,.7,.1,1) forwards; }
+  @keyframes settle { to { transform: none; } }
+
+  h1 { font: 300 38px/1.06 "Inter Tight"; letter-spacing: -.035em; text-align: center; margin: 0 0 10px; }
+  h2 { font: 300 32px/1.08 "Inter Tight"; letter-spacing: -.03em; text-align: center; margin: 18px 0 10px; }
+  .sub { text-align: center; color: var(--grey); margin: 0 auto 28px; max-width: 32ch; font-size: 16px; }
+
+  .voice { display: flex; align-items: center; gap: 12px; margin: 0 auto 30px; width: max-content; max-width: 100%; border: 0; background: #f5f5f5;
+           border-radius: 999px; padding: 8px 18px 8px 8px; font: 500 15px "Inter Tight"; color: var(--ink); cursor: pointer; }
+  .voice .pl { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; flex: none; }
+  .voice svg { width: 14px; height: 14px; }
+  .voice .wave { display: flex; gap: 3px; align-items: center; height: 18px; }
+  .voice .wave i { width: 3px; border-radius: 2px; background: var(--ink); height: 6px; }
+  .voice.on .wave i { animation: w .7s ease-in-out infinite alternate; }
+  .voice .wave i:nth-child(2) { animation-delay: .15s; } .voice .wave i:nth-child(3) { animation-delay: .3s; } .voice .wave i:nth-child(4) { animation-delay: .45s; } .voice .wave i:nth-child(5) { animation-delay: .6s; }
+  @keyframes w { to { height: 18px; } }
+
+  .btn { display: block; width: 100%; padding: 17px 20px; border-radius: 999px; font: 500 16px "Inter Tight"; text-align: center; cursor: pointer; margin: 0 0 10px; border: 1px solid var(--ink); }
+  .btn.dark { background: var(--ink); color: #fff; }
+  .btn.light { background: #fff; color: var(--ink); }
+  .btn small { display: block; font: 400 13px "Inter Tight"; opacity: .6; margin-top: 2px; }
+
+  .count { text-align: center; color: var(--grey); font-size: 14px; margin: 0 0 6px; }
+  .track { height: 3px; background: var(--line); border-radius: 2px; margin: 0 0 22px; overflow: hidden; }
+  .track i { display: block; height: 100%; width: 0; background: var(--lemon); transition: width .35s ease; }
+
+  ol.steps { list-style: none; margin: 0 0 26px; padding: 0; }
+  ol.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  ol.steps li:last-child { border-bottom: 1px solid var(--line); }
+  .n { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; font: 500 13px "Inter Tight"; transition: background .2s, border-color .2s; }
+  li.done .n { background: var(--lemon); border-color: var(--lemon); }
+  li.done .n b { display: none; }
+  .n svg { width: 14px; height: 14px; display: none; }
+  li.done .n svg { display: block; }
+  li.done .t { color: var(--grey); }
+  .t { padding-top: 3px; }
+  .p { font-weight: 600; }
+
+  .note { background: #f7f7f5; border-radius: 22px; padding: 18px 20px; margin: 0 0 22px; font-size: 16px; }
+  .note b { font-weight: 600; display: block; margin-bottom: 2px; }
+
+  .keys div { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 16px; }
+  .keys div:last-child { border-bottom: 1px solid var(--line); }
+  .keys span:last-child { text-align: right; color: var(--grey); }
+  kbd { font: 500 13px "Inter Tight"; color: var(--ink); background: #f3f3f3; border-radius: 999px; padding: 6px 11px; white-space: nowrap; display: inline-block; margin: 2px 0; }
+  h3 { font: 300 26px "Inter Tight"; letter-spacing: -.02em; text-align: center; margin: 36px 0 14px; }
+
+  .foot { text-align: center; color: #b3b3b3; font-size: 13px; margin-top: 34px; }
+  .view { display: none; } .view.on { display: block; }
+  button:focus-visible, li:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bk" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#000" stroke-width="2"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></symbol>
+  <symbol id="pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/></symbol>
+</svg>
+<main>
+  <div class="bar"><button class="back" id="back" aria-label="Назад"><svg><use href="#bk"/></svg></button><span>для Севиль</span></div>
+
+  <section class="view" data-id="start">
+    <div class="hero"><img src="hero.jpg" alt="Разбитый и новый телефоны на белом льне, лимон и соломенная сумка"></div>
+    <div class="pad">
+      <h1>Новый айфон<br>без нервов</h1>
+      <p class="sub">Пара вопросов, и дальше по шагам</p>
+      <button class="voice" id="voice"><span class="pl"><svg id="vi"><use href="#play"/></svg></span><span class="wave"><i></i><i></i><i></i><i></i><i></i></span>Голосовое от Вовки</button>
+      <button class="btn dark" data-go="icloud">Перенести всё на новый айфон<small>фото, контакты, приложения</small></button>
+      <button class="btn light" data-go="mac">Телеграм на макбуке<small>войти и писать удобно</small></button>
+    </div>
+  </section>
+
+  <section class="view pad" data-id="icloud">
+    <h2>Есть ли уже копия в iCloud?</h2>
+    <p class="sub">На старом: <span class="p">Настройки → своё имя → iCloud → Резервная копия</span>. Там дата последней копии.</p>
+    <button class="btn dark" data-go="restore">Есть, дата свежая<small>сегодня или вчера</small></button>
+    <button class="btn light" data-go="screen">Нет или старая<small>или не получается посмотреть</small></button>
+  </section>
+
+  <section class="view pad" data-id="restore">
+    <h2>Из копии iCloud</h2>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">Включи новый айфон и иди по настройке до экрана «Перенос приложений и данных».</span></li>
+      <li><span class="t">Выбери <span class="p">«Из копии iCloud»</span> и войди своим Apple ID.</span></li>
+      <li><span class="t">Выбери копию с самой свежей датой.</span></li>
+      <li><span class="t">Держи телефон на Wi-Fi и на зарядке, пока докачиваются фото и приложения. Может занять вечер.</span></li>
+    </ol>
+    <button class="btn dark" data-go="after">Перенесла, что проверить</button>
+  </section>
+
+  <section class="view pad" data-id="screen">
+    <h2>Старый экран реагирует на касания?</h2>
+    <p class="sub">Смахни и потыкай по живой части.</p>
+    <button class="btn dark" data-go="quick">Да, низ работает<small>кнопки внизу нажимаются</small></button>
+    <button class="btn light" data-go="voiceover">Частично<small>кнопка может попасть в мёртвую зону</small></button>
+    <button class="btn light" data-go="service">Совсем нет<small>или экран чёрный</small></button>
+  </section>
+
+  <section class="view pad" data-id="quick">
+    <h2>С телефона на телефон</h2>
+    <p class="sub">Напрямую, iCloud и копия не нужны.</p>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">Заряди оба телефона, лучше держи на проводе.</span></li>
+      <li><span class="t">Новый айфон стоит на самом первом экране настройки. Уже настроила — сбрось: <span class="p">Настройки → Основные → Перенос или сброс iPhone → Стереть контент и настройки</span>.</span></li>
+      <li><span class="t">На старом включи Wi-Fi и Bluetooth. Положи телефоны рядом.</span></li>
+      <li><span class="t">На старом всплывёт «Настроить новый iPhone». Нажми <span class="p">«Продолжить»</span>.</span></li>
+      <li><span class="t">Наведи камеру старого на облачко на новом. Камера не видит — «Аутентифицировать вручную» и код.</span></li>
+      <li><span class="t">Пароль от старого телефона вводишь уже на новом, там экран целый.</span></li>
+      <li><span class="t">Выбери <span class="p">«Перенести с iPhone»</span>. Не трогай телефоны, от 20 минут до пары часов.</span></li>
+    </ol>
+    <button class="btn dark" data-go="after">Перенесла, что проверить</button>
+    <button class="btn light" data-go="voiceover">«Продолжить» не нажимается</button>
+  </section>
+
+  <section class="view pad" data-id="voiceover">
+    <h2>Голосом и пальцем</h2>
+    <p class="sub">VoiceOver зачитывает кнопки вслух, так нажимается та, которую не видно.</p>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">Скажи старому: <span class="p">«Привет, Siri, включи VoiceOver»</span>.</span></li>
+      <li><span class="t">Веди пальцем по живой части экрана. Телефон называет кнопки по очереди.</span></li>
+      <li><span class="t">Услышала «Продолжить» — тапни дважды в любом месте живой части.</span></li>
+      <li><span class="t">Дальше по шагам переноса с телефона на телефон.</span></li>
+      <li><span class="t">После переноса: <span class="p">«Привет, Siri, выключи VoiceOver»</span>.</span></li>
+    </ol>
+    <div class="note"><b>Siri молчит?</b>Значит, она выключена на старом, и голосом VoiceOver не включить. Тогда в сервис.</div>
+    <button class="btn dark" data-go="quick">К шагам переноса</button>
+    <button class="btn light" data-go="service">Не получилось</button>
+  </section>
+
+  <section class="view pad" data-id="service">
+    <h2>В сервис</h2>
+    <p class="sub">Без живого экрана перенос руками не сделать: старый просит нажать «Доверять» и ввести пароль.</p>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">Возьми оба телефона и зарядку.</span></li>
+      <li><span class="t">Иди в GSM Store, где покупала, и попроси перенести данные со старого на новый.</span></li>
+      <li><span class="t">Пароль от старого вводи сама, никому не говори.</span></li>
+    </ol>
+    <div class="note"><b>Экран менять не обязательно</b>Мастер может подключить рабочий экран на время переноса.</div>
+    <button class="btn dark" data-go="after">Перенесла, что проверить</button>
+  </section>
+
+  <section class="view pad" data-id="after">
+    <h2>Проверить после переноса</h2>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">Фото на месте. Видно не все — подожди, докачиваются из iCloud.</span></li>
+      <li><span class="t">Телеграм: войди по номеру, код придёт в Телеграм на макбуке.</span></li>
+      <li><span class="t">WhatsApp открылся со всей перепиской.</span></li>
+      <li><span class="t">Банки. Тех, что убрали из App Store, может не оказаться, их ставят через сайт банка.</span></li>
+      <li><span class="t">Старый телефон не стирай, пока всё не проверишь.</span></li>
+    </ol>
+    <div class="note"><b>Не выходи из Телеграма на макбуке</b>Пока не вошла на новом телефоне, код придёт туда.</div>
+    <button class="btn light" data-go="mac">Теперь Телеграм на макбуке</button>
+  </section>
+
+  <section class="view pad" data-id="mac">
+    <h2>Телеграм на макбуке</h2>
+    <p class="count"></p><div class="track"><i></i></div>
+    <ol class="steps">
+      <li><span class="t">В App Store на макбуке найди <span class="p">Telegram</span> с синей иконкой-самолётиком и установи.</span></li>
+      <li><span class="t">Открой его, на экране будет QR-код.</span></li>
+      <li><span class="t">На телефоне в Телеграме: <span class="p">Настройки → Устройства → Подключить устройство</span>, наведи камеру на код.</span></li>
+      <li><span class="t">Чаты подтянутся сами, вместе с группой школы.</span></li>
+    </ol>
+    <h3>Как писать удобно</h3>
+    <div class="keys">
+      <div><span>Отправить</span><span><kbd>Enter</kbd></span></div>
+      <div><span>Новая строка</span><span><kbd>Shift + Enter</kbd></span></div>
+      <div><span>Голосовое</span><span>зажать микрофон справа внизу</span></div>
+      <div><span>Скрин в чат</span><span><kbd>Cmd + Ctrl + Shift + 4</kbd> выделить <kbd>Cmd + V</kbd></span></div>
+      <div><span>Найти чат</span><span><kbd>Cmd + K</kbd></span></div>
+      <div><span>Ответить</span><span>правый клик по сообщению</span></div>
+    </div>
+  </section>
+
+  <p class="foot">Галочки запоминаются на этом телефоне</p>
+</main>
+<audio id="aud" src="privet.mp3" preload="none"></audio>
+<script>
+(() => {
+  const views = [...document.querySelectorAll(".view")], back = document.getElementById("back"), trail = [];
+  const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+                  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+  function show(id, push = true) {
+    const cur = views.find(v => v.classList.contains("on"));
+    if (push && cur) trail.push(cur.dataset.id);
+    views.forEach(v => v.classList.toggle("on", v.dataset.id === id));
+    back.classList.toggle("show", trail.length > 0);
+    window.scrollTo(0, 0);
+  }
+  function count(view) {
+    const all = view.querySelectorAll("ol.steps li"), c = view.querySelector(".count");
+    if (!c) return;
+    const n = view.querySelectorAll("li.done").length;
+    c.textContent = n === all.length ? "Готово" : `Сделано ${n} из ${all.length}`;
+    view.querySelector(".track i").style.width = (100 * n / all.length) + "%";
+  }
+  const done = store.get("sevil-done") || {};
+  views.forEach(view => {
+    view.querySelectorAll("ol.steps li").forEach((li, i) => {
+      li.insertAdjacentHTML("afterbegin", `<span class="n"><b>${i + 1}</b><svg><use href="#ok"/></svg></span>`);
+      li.setAttribute("role", "checkbox"); li.tabIndex = 0;
+      const key = view.dataset.id + ":" + i;
+      const set = on => { li.classList.toggle("done", on); li.setAttribute("aria-checked", on); };
+      set(!!done[key]);
+      const flip = () => { set(!li.classList.contains("done")); done[key] = li.classList.contains("done"); store.set("sevil-done", done); count(view); };
+      li.addEventListener("click", flip);
+      li.addEventListener("keydown", e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); flip(); } });
+    });
+    count(view);
+  });
+  document.addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) show(b.dataset.go); });
+  back.addEventListener("click", () => { if (trail.length) show(trail.pop(), false); });
+
+  const aud = document.getElementById("aud"), vb = document.getElementById("voice"), vi = document.querySelector("#vi use");
+  vb.addEventListener("click", () => { aud.paused ? aud.play() : aud.pause(); });
+  aud.addEventListener("play", () => { vb.classList.add("on"); vi.setAttribute("href", "#pause"); });
+  ["pause", "ended"].forEach(ev => aud.addEventListener(ev, () => { vb.classList.remove("on"); vi.setAttribute("href", "#play"); }));
+  show("start", false);
+})();
+</script>
+</body>
+</html>
